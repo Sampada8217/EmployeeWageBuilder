@@ -1,24 +1,21 @@
-public class EmpWageBuilderArray{
-   public static final int IS_FULL_TIME=1;
-   public static final int IS_PART_TIME=2;
-     
-  
+import java.util.*;
+public class EmpWageBuilderArrayList{ 
+    public static final int IS_FULL_TIME=1; 
+    public static final int IS_PART_TIME=2;
+ 
     private int numOfCompany=0;
-    private CompanyEmpWage[] companyEmpWageArray;
-   
-    public EmpWageBuilderArray(){
-        companyEmpWageArray=new CompanyEmpWage[5];
-    }
+    private ArrayList<CompanyEmpWage> companyEmpWageArrayList=new ArrayList<CompanyEmpWage>();
 
-    private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){
-        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+    private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){  
+        CompanyEmpWage companyWage= new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+        companyEmpWageArrayList.add(companyWage);
         numOfCompany++;
     }
 
     private void computeEmpWage(){
        for(int i=0;i<numOfCompany;i++){
-          int totalEmpWage=this.computeEmpWage(companyEmpWageArray[i]);
-          System.out.println("Total emp Wage for Company"+companyEmpWageArray[i].company+ "is"+totalEmpWage);
+          int totalEmpWage=this.computeEmpWage(companyEmpWageArrayList.get(i));
+          System.out.println("Total emp Wage for Company"+companyEmpWageArrayList.get(i).company+ "is"+totalEmpWage);
         }
     }
     public int computeEmpWage(CompanyEmpWage companyEmpWage){
@@ -46,15 +43,15 @@ public class EmpWageBuilderArray{
 	
 	   }
 	   return totalEmpHrs=totalEmpHrs*companyEmpWage.empRatePerHour;
-   }
+    }
 
     public static void main(String[] args){
-        EmpWageBuilderArray empWageArray=new EmpWageBuilderArray();
-        empWageArray.addCompanyEmpWage("DMART",20,2,10);
-	empWageArray.addCompanyEmpWage("Reliance",30,3,20);
-	empWageArray.addCompanyEmpWage("Big Basket",40,4,30);
-	empWageArray.computeEmpWage();
-	
+
+        EmpWageBuilderArrayList empWageArrayList=new EmpWageBuilderArrayList();
+        empWageArrayList.addCompanyEmpWage("DMART",20,2,10);
+	empWageArrayList.addCompanyEmpWage("Reliance",30,3,20);
+	empWageArrayList.addCompanyEmpWage("Big Basket",40,4,30);
+	empWageArrayList.computeEmpWage();
 
     }
 
@@ -64,10 +61,10 @@ public class EmpWageBuilderArray{
        public int numOfWorkingDays;
        public int maxHoursPerMonth; 
        public CompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){  
-        this.company=company;
-        this.empRatePerHour=empRatePerHour;
-        this.numOfWorkingDays=numOfWorkingDays;
-        this.maxHoursPerMonth=maxHoursPerMonth;
+         this.company=company;
+         this.empRatePerHour=empRatePerHour;
+         this.numOfWorkingDays=numOfWorkingDays;
+         this.maxHoursPerMonth=maxHoursPerMonth;
   
 
      }
