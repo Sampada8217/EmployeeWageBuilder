@@ -20,7 +20,7 @@ public class EmpWageBuilderArrayList{
     }
     public int computeEmpWage(CompanyEmpWage companyEmpWage){
        	
-          int totalEmpHrs=0,totalEmpWage=0,totalWorkingDays=0;
+          int totalEmpHrs=0,totalEmpWage=0,totalWorkingDays=0,dailyWage=0;
 	  while(totalEmpHrs <= companyEmpWage.maxHoursPerMonth && totalWorkingDays <= companyEmpWage.numOfWorkingDays){
 		int empHrs=0;
 		totalWorkingDays++;
@@ -39,7 +39,8 @@ public class EmpWageBuilderArrayList{
 
        	        } 
                 totalEmpHrs+=empHrs;
-	        System.out.println("Day#: "+totalWorkingDays+ "empHrs"+empHrs);
+                dailyWage=companyEmpWage.empRatePerHour*empHrs;
+	        System.out.println("Day#: "+totalWorkingDays+ "  empHrs:"+empHrs+ " Daily Wage:"+dailyWage);
 	
 	   }
 	   return totalEmpHrs=totalEmpHrs*companyEmpWage.empRatePerHour;
