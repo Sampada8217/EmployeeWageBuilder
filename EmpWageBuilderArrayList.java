@@ -13,11 +13,12 @@ public class EmpWageBuilderArrayList{
     }
 
     private void computeEmpWage(){
-       for(int i=0;i<numOfCompany;i++){
+        for(int i=0;i<numOfCompany;i++){
           int totalEmpWage=this.computeEmpWage(companyEmpWageArrayList.get(i));
-          System.out.println("Total emp Wage for Company"+companyEmpWageArrayList.get(i).company+ "is"+totalEmpWage);
+          System.out.println("Total Emp Wage for Company"+companyEmpWageArrayList.get(i).company+ "is"+totalEmpWage);
         }
     }
+       
     public int computeEmpWage(CompanyEmpWage companyEmpWage){
        	
           int totalEmpHrs=0,totalEmpWage=0,totalWorkingDays=0,dailyWage=0;
@@ -41,10 +42,13 @@ public class EmpWageBuilderArrayList{
                 totalEmpHrs+=empHrs;
                 dailyWage=companyEmpWage.empRatePerHour*empHrs;
 	        System.out.println("Day#: "+totalWorkingDays+ "  empHrs:"+empHrs+ " Daily Wage:"+dailyWage);
-	
-	   }
+		totalEmpWage=companyEmpWage.empRatePerHour*totalEmpHrs;
+		
+	 }
+	   System.out.println("Total Company Wage" +totalEmpWage);
 	   return totalEmpHrs=totalEmpHrs*companyEmpWage.empRatePerHour;
     }
+
 
     public static void main(String[] args){
 
