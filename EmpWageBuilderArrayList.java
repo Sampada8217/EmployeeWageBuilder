@@ -4,7 +4,8 @@ public class EmpWageBuilderArrayList{
     public static final int IS_PART_TIME=2;
  
     private int numOfCompany=0;
-    private ArrayList<CompanyEmpWage> companyEmpWageArrayList=new ArrayList<CompanyEmpWage>();
+    public ArrayList<CompanyEmpWage> companyEmpWageArrayList=new ArrayList<CompanyEmpWage>();
+    public Map<String,Integer> totalWage=new HashMap<String,Integer>();
 
     private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){  
         CompanyEmpWage companyWage= new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
@@ -16,9 +17,14 @@ public class EmpWageBuilderArrayList{
         for(int i=0;i<numOfCompany;i++){
           int totalEmpWage=this.computeEmpWage(companyEmpWageArrayList.get(i));
           System.out.println("Total Emp Wage for Company"+companyEmpWageArrayList.get(i).company+ "is"+totalEmpWage);
+          totalWage.put(companyEmpWageArrayList.get(i).company,totalEmpWage);
         }
     }
-       
+   
+    private void getCompanyWage(String companyName){
+        int totalCompanyWage=(int)totalWage.get(companyName);
+        System.out.println("Comany Name:" +companyName+ "totalCompanyWage"+totalCompanyWage);
+     }       
     public int computeEmpWage(CompanyEmpWage companyEmpWage){
        	
           int totalEmpHrs=0,totalEmpWage=0,totalWorkingDays=0,dailyWage=0;
@@ -42,10 +48,8 @@ public class EmpWageBuilderArrayList{
                 totalEmpHrs+=empHrs;
                 dailyWage=companyEmpWage.empRatePerHour*empHrs;
 	        System.out.println("Day#: "+totalWorkingDays+ "  empHrs:"+empHrs+ " Daily Wage:"+dailyWage);
-		totalEmpWage=companyEmpWage.empRatePerHour*totalEmpHrs;
 		
 	 }
-	   System.out.println("Total Company Wage" +totalEmpWage);
 	   return totalEmpHrs=totalEmpHrs*companyEmpWage.empRatePerHour;
     }
 
@@ -57,6 +61,9 @@ public class EmpWageBuilderArrayList{
 	empWageArrayList.addCompanyEmpWage("Reliance",30,3,20);
 	empWageArrayList.addCompanyEmpWage("Big Basket",40,4,30);
 	empWageArrayList.computeEmpWage();
+        empWageArrayList.getCompanyWage("DMART");
+	empWageArrayList.getCompanyWage("Reliance");
+	empWageArrayList.getCompanyWage("Big Basket");
 
     }
 
